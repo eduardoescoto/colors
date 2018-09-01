@@ -52,11 +52,14 @@ class App extends Component {
         const { Header, Content, Footer } = Layout;
         const { siderCollapsed, currentPage } = this.props.pages;
         const { changeSiderCollapsed, changeCurrentPage } = this.props;
+        const siderCollapsedPadding = { collapsed: 80, expanded: 200 };
+        const siderCollapsedMinWidth = { collapsed: 500, expanded: 620 };
+        
         return (
-            <Layout style={{ minHeight: '100vh', minWidth: siderCollapsed ? 80 + 420 : 200 + 420 }} >
+            <Layout style={{ minHeight: '100vh', minWidth: siderCollapsed ? siderCollapsedMinWidth.collapsed : siderCollapsedMinWidth.expanded }} >
                 <ControlSider changeCollapse={changeSiderCollapsed} siderCollapsed={siderCollapsed} changePage={changeCurrentPage} currentPage={currentPage} />
-                <Layout style={{ background: "rgb(240, 242, 245)", transition: "background 0.5s ease 0.2s, width 0.4s ease 0.2s", marginLeft: siderCollapsed ? 80 : 200 }}>
-                    <Header style={{ minWidth: siderCollapsed ? 80 + 420 : 200 + 420, position: 'fixed', zIndex: 3, width: '100%', background: '#fff', padding: 0 }}>
+                <Layout style={{ background: "rgb(240, 242, 245)", transition: "background 0.5s ease 0.2s, width 0.4s ease 0.2s", marginLeft: siderCollapsed ? siderCollapsedPadding.collapsed : siderCollapsedPadding.expanded }}>
+                    <Header style={{ minWidth: siderCollapsed ? siderCollapsedMinWidth.collapsed : siderCollapsedMinWidth.expanded, position: 'fixed', zIndex: 3, width: '100%', background: '#fff', padding: 0 }}>
                         <Breadcrumb style={{ fontSize: "30px", padding: "20px 10px 10px 20px" }} separator=" " >{this.getHeaderBreadcrumbs()}</Breadcrumb>
                     </Header>
                     <Content style={{ margin: '75px 50px 75px 50px', overflow: 'initial' }}>
@@ -69,7 +72,7 @@ class App extends Component {
                         <Route exact path='/colors' component={Colors} />
                         <Route exact path='/' component={Colors} />
                     </Content>
-                    <Footer style={{ overflow: "auto", minWidth: siderCollapsed ? 80 + 420 : 200 + 420, width: "100%", zIndex: 3, position: "fixed", bottom: 0, right: 0, padding: `12px 60px`, paddingRight: "0px", paddingLeft: siderCollapsed ? 80 : 200, background: "#FFF" }}>
+                    <Footer style={{ overflow: "auto", minWidth: siderCollapsed ? siderCollapsedMinWidth.collapsed : siderCollapsedMinWidth.expanded, width: "100%", zIndex: 3, position: "fixed", bottom: 0, right: 0, padding: `12px 60px`, paddingRight: "0px", paddingLeft: siderCollapsed ? siderCollapsedPadding.collapsed : siderCollapsedPadding.expanded, background: "#FFF" }}>
                         <h3 style={{ textAlign: "center", padding: 0, margin: 0 }}>COLORS, MADE WITH <span role="img" aria-label="LOVE">💖</span> BY ED HEHE xD</h3>
                     </Footer>
                 </Layout>
