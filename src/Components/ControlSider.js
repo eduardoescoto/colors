@@ -16,9 +16,9 @@ class ControlSider extends Component {
     render() {
         const { currentPage, siderCollapsed } = this.props;
         return (
-            <Layout.Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }} collapsible collapsed={siderCollapsed} onCollapse={this.onCollapse}>
+            <Layout.Sider style={{ zIndex: 5, overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }} collapsible collapsed={siderCollapsed} onCollapse={this.onCollapse}>
                 <Menu theme="dark" onClick={this.onSettingsChange} selectedKeys={[currentPage]} mode="inline">
-                    <MenuItem key={[PAGE_TYPES.HOME]}><Link to="/"><Icon type="picture" /><span>COLORS</span></Link></MenuItem>
+                    <MenuItem key={[PAGE_TYPES.HOME]}><Link to="/colors"><Icon type="picture" /><span>COLORS</span></Link></MenuItem>
                     <MenuItem key={[PAGE_TYPES.SETTINGS]}><Link to="/settings"><Icon type="setting" /><span>ALL SETTINGS</span></Link></MenuItem>
                     <MenuItem key={[PAGE_TYPES.COLOR_PRESET_SETTINGS]}><Link to="/settings/colorPresetSettings"><Icon type="select" /><span>COLOR PRESETS</span></Link></MenuItem>
                     <MenuItem key={[PAGE_TYPES.RGB_SETTINGS]}><Link to="/settings/rgbSettings"><Icon type="eye" /><span>RGB</span></Link></MenuItem>

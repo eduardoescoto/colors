@@ -2,7 +2,7 @@ export const CHANGE_PAGE = "CHANGE_PAGE";
 export const CHANGE_SIDER_COLLAPSE = "CHANGE_SIDER_COLLAPSE";
 
 export const PAGE_TYPES = {
-    HOME: "/",
+    HOME: "colors",
     SETTINGS: "settings",
     RGB_SETTINGS: "rgbSettings",
     HSL_SETTINGS: "hslSettings",

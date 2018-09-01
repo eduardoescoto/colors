@@ -1,6 +1,7 @@
 import Colors from './Colors';
-import ControlSider from '../Components/ControlSider';
+import Color from '../Components/Color';
 import SettingsPage from './SettingsPage';
+import ControlSider from '../Components/ControlSider';
 
 import { changeSettingAction } from '../Actions/colorSettingsChangeAction'
 import { Layout, Breadcrumb } from 'antd';
@@ -14,12 +15,8 @@ class App extends Component {
         const initialLocation = this.props.location.pathname;
         this.props.changeCurrentPage(initialLocation);
     }
-    changePage = (e) => {
-        console.log(e);
-    }
     getHeaderBreadcrumbs = () => {
         const breadcrumbNameMap = {
-            '/': 'COLORS',
             '/settings': 'SETTINGS',
             '/settings/rgbSettings': 'RGB',
             '/settings/hexSettings': 'HEX',
@@ -39,7 +36,7 @@ class App extends Component {
         });
         const breadcrumbItems = [(
             <Breadcrumb.Item key="COLORS">
-                <Link to="/">COLORS</Link>
+                <Link to="/colors">COLORS</Link>
             </Breadcrumb.Item>
         )].concat(extraBreadcrumbItems);
         return breadcrumbItems;
@@ -56,22 +53,24 @@ class App extends Component {
         const { siderCollapsed, currentPage } = this.props.pages;
         const { changeSiderCollapsed, changeCurrentPage } = this.props;
         return (
-            <Layout style={{ minHeight: '100vh' }} >
+            <Layout style={{ minHeight: '100vh', minWidth: siderCollapsed ? 80 + 420 : 200 + 420 }} >
                 <ControlSider changeCollapse={changeSiderCollapsed} siderCollapsed={siderCollapsed} changePage={changeCurrentPage} currentPage={currentPage} />
                 <Layout style={{ background: "rgb(240, 242, 245)", transition: "background 0.5s ease 0.2s, width 0.4s ease 0.2s", marginLeft: siderCollapsed ? 80 : 200 }}>
-                    <Header style={{ display: "flex", alignItems: "center", position: 'fixed', zIndex: 10, width: '100%', background: '#fff', padding: 0 }}>
-                        <Breadcrumb style={{ fontSize: "30px", padding: "20px 10px 10px 20px" }} separator="|" >{this.getHeaderBreadcrumbs()}</Breadcrumb>
+                    <Header style={{ minWidth: siderCollapsed ? 80 + 420 : 200 + 420, position: 'fixed', zIndex: 3, width: '100%', background: '#fff', padding: 0 }}>
+                        <Breadcrumb style={{ fontSize: "30px", padding: "20px 10px 10px 20px" }} separator=" " >{this.getHeaderBreadcrumbs()}</Breadcrumb>
                     </Header>
-                    <Content style={{ margin: '75px 75px 50px 75px', overflow: 'initial' }}>
+                    <Content style={{ margin: '75px 50px 75px 50px', overflow: 'initial' }}>
                         <Route path='/settings/rgbSettings' component={SettingsPage} />
                         <Route path='/settings/hexSettings' component={SettingsPage} />
                         <Route path='/settings/hslSettings' component={SettingsPage} />
                         <Route path='/settings/colorPresetSettings' component={SettingsPage} />
+                        <Route path='/colors/:id' component={Color} />
                         <Route exact path='/settings' component={SettingsPage} />
+                        <Route exact path='/colors' component={Colors} />
                         <Route exact path='/' component={Colors} />
                     </Content>
-                    <Footer style={{ background: "#FFF", textAlign: 'center' }}>
-                        <h3>COLORS, MADE WITH <span role="img" aria-label="LOVE">💖</span> BY ED HEHE xD</h3>
+                    <Footer style={{ overflow: "auto", minWidth: siderCollapsed ? 80 + 420 : 200 + 420, width: "100%", zIndex: 3, position: "fixed", bottom: 0, right: 0, padding: `12px 60px`, paddingRight: "0px", paddingLeft: siderCollapsed ? 80 : 200, background: "#FFF" }}>
+                        <h3 style={{ textAlign: "center", padding: 0, margin: 0 }}>COLORS, MADE WITH <span role="img" aria-label="LOVE">💖</span> BY ED HEHE xD</h3>
                     </Footer>
                 </Layout>
             </Layout >

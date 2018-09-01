@@ -1,16 +1,16 @@
 import {
     SETTINGS_MODE,
-    COLOR_ARCHETYPES,
+    COLOR_PRESETS,
     HSL_SETTING_CHANGED,
     RGB_SETTING_CHANGED,
     HEX_SETTING_CHANGED,
-    COLOR_ARCHETYPES_SETTING_CHANGED,
+    COLOR_PRESETS_SETTING_CHANGED,
     VALUE_TYPES
 } from '../Actions/colorSettingsChangeAction';
 
 let initialState = {
     settingsMode: SETTINGS_MODE.TYPES,
-    colorType: Object.values(COLOR_ARCHETYPES),
+    colorType: Object.values(COLOR_PRESETS),
     hslValues: {
         hueValues: {
             exact: 240,
@@ -69,7 +69,7 @@ function colorSettingsChangedReducer(state = initialState, { type, payload }) {
         case HSL_SETTING_CHANGED: state = { ...state, hslValues: payload }; break;
         case HEX_SETTING_CHANGED: state = { ...state, hexValues: payload }; break;
         case RGB_SETTING_CHANGED: state = { ...state, rgbValues: payload }; break;
-        case COLOR_ARCHETYPES_SETTING_CHANGED: state = { ...state, colorType: payload }; break;
+        case COLOR_PRESETS_SETTING_CHANGED: state = { ...state, colorType: payload }; break;
         default: state = { ...state }; break;
     }
     return state;

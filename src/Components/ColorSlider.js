@@ -228,7 +228,7 @@ class ColorSlider extends Component {
         let slider = this.getSliderFromState();
         return (
             <div>
-                <h2>{this.props.sliderName}</h2>
+                {/* <h2>{this.props.sliderName}</h2> */}
                 <Radio.Group value={this.props.settingValue.valueType} buttonStyle="solid" onChange={this.sliderSettingChanged}>
                     <Radio.Button value={VALUE_TYPES.RANGED}>By Ranged Value</Radio.Button>
                     <Radio.Button value={VALUE_TYPES.EXACT}>By Exact Value</Radio.Button>

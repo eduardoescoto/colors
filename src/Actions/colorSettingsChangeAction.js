@@ -1,15 +1,15 @@
-export const COLOR_ARCHETYPES_SETTING_CHANGED = "COLOR_ARCHETYPES_SETTING_CHANGED"
-export const COLOR_ARCHETYPES = {
-    REDS: 'red',
-    PINKS: 'pink',
-    BLUES: 'blue',
-    GREYS: 'grey',
-    GREENS: 'green',
-    BLACKS: 'black',
-    WHITES: 'white',
-    PASTELS: 'pastel',
-    ORANGES: 'orange',
-    PURPLES: 'purple'
+export const COLOR_PRESETS_SETTING_CHANGED = "Color Preset Settings"
+export const COLOR_PRESETS = {
+    REDS: 'Reds',
+    PINKS: 'Pinks',
+    BLUES: 'Blues',
+    GREYS: 'Greys',
+    GREENS: 'Greens',
+    BLACKS: 'Blacks',
+    WHITES: 'Whites',
+    PASTELS: 'Pastels',
+    ORANGES: 'Oranges',
+    PURPLES: 'Purples'
 }
 
 export const VALUE_TYPES = {
@@ -17,7 +17,7 @@ export const VALUE_TYPES = {
     EXACT: "EXACT"
 }
 
-export const SETTINGS_MODE_CHANGED = "SETTINGS_MODE_CHANGED";
+export const SETTINGS_MODE_CHANGED = "All Settings";
 export const SETTINGS_MODE = {
     HSL: 'HSL',
     RGB: 'RGB',
@@ -25,9 +25,10 @@ export const SETTINGS_MODE = {
     TYPES: 'TYPES'
 }
 
-export const HSL_SETTING_CHANGED = "HSL_SETTING_CHANGED";
-export const RGB_SETTING_CHANGED = "RGB_SETTING_CHANGED";
-export const HEX_SETTING_CHANGED = "HEX_SETTING_CHANGED";
+export const HSL_SETTING_CHANGED = "HSL Settings";
+export const RGB_SETTING_CHANGED = "RGB Settings";
+export const HEX_SETTING_CHANGED = "HEX Settings";
+
 
 
 export function changeSettingAction(settingChange, settingsValue) {
