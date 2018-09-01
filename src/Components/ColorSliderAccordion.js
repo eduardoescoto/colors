@@ -6,7 +6,7 @@ const Panel = Collapse.Panel;
 class ColorSliderAccordion extends Component {
     getPanelsFromSliderArray = (sliders) => {
         const panelArray = sliders.map((slider) => {
-            return <Panel key={slider.props.settingName} header={slider.props.sliderName}>{slider}</Panel>
+            return (<Panel key={slider.props.settingName} header={slider.props.sliderName}>{slider}</Panel>);
         });
         return panelArray;
     }

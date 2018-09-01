@@ -3,11 +3,12 @@ import Color from '../Components/Color';
 import SettingsPage from './SettingsPage';
 import ControlSider from '../Components/ControlSider';
 
-import { changeSettingAction } from '../Actions/colorSettingsChangeAction'
-import { Layout, Breadcrumb } from 'antd';
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Layout, Breadcrumb } from 'antd';
+
+import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
+import { changeSettingAction } from '../Actions/colorSettingsChangeAction'
 import { changePageAction, changeSiderCollapseAction } from '../Actions/pageChangedAction';
 
 class App extends Component {
@@ -52,9 +53,10 @@ class App extends Component {
         const { Header, Content, Footer } = Layout;
         const { siderCollapsed, currentPage } = this.props.pages;
         const { changeSiderCollapsed, changeCurrentPage } = this.props;
+
         const siderCollapsedPadding = { collapsed: 80, expanded: 200 };
         const siderCollapsedMinWidth = { collapsed: 500, expanded: 620 };
-        
+
         return (
             <Layout style={{ minHeight: '100vh', minWidth: siderCollapsed ? siderCollapsedMinWidth.collapsed : siderCollapsedMinWidth.expanded }} >
                 <ControlSider changeCollapse={changeSiderCollapsed} siderCollapsed={siderCollapsed} changePage={changeCurrentPage} currentPage={currentPage} />
