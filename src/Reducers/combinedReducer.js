@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
-import colorSettingsChangedReducer from './colorSettingsChangedReducer'
+
 import pageChangedReducer from './pageChangedReducer';
+import colorSettingsChangedReducer from './colorSettingsChangedReducer'
+import changeSelectedSettingReducer from './changeSelectedSettingReducer';
 
 export default combineReducers({
     pages: pageChangedReducer,
-    colorSettings: colorSettingsChangedReducer
+    colorSettings: colorSettingsChangedReducer,
+    selectedSetting: changeSelectedSettingReducer
 });

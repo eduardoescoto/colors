@@ -30,6 +30,7 @@ registerServiceWorker();
  * [x] Fix settings titles to look nice
  * [x] Fix all settings page to maybe use dropdowns
  * [x] Change Radio group to check box group
+ * [] add color range boxes to the check box group within consideration for the color type
  * [] Set the current settings type
  * [] Write the Colors page
  * [] Create Palette Creator

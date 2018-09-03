@@ -2,13 +2,13 @@ import Colors from './Colors';
 import Color from '../Components/Color';
 import SettingsPage from './SettingsPage';
 import ControlSider from '../Components/ControlSider';
+import changeSettingAction from '../Actions/colorSettingsChangeAction'
 
 import React, { Component } from 'react';
 import { Layout, Breadcrumb } from 'antd';
 
 import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
-import { changeSettingAction } from '../Actions/colorSettingsChangeAction'
 import { changePageAction, changeSiderCollapseAction } from '../Actions/pageChangedAction';
 
 class App extends Component {

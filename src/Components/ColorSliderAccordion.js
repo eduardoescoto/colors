@@ -1,5 +1,6 @@
-import { Collapse } from 'antd';
+import { Collapse, Row, Col } from 'antd';
 import React, { Component } from 'react';
+import { COLOR_PRESETS_SETTING_CHANGED } from '../Actions/colorSettingsChangeAction';
 
 const Panel = Collapse.Panel;
 
@@ -20,26 +21,35 @@ class ColorSliderAccordion extends Component {
         let accordions;
         if (sliders.length === 1) {
             accordions = (
-                <Collapse defaultActiveKey={this.getDefaultActiveKeysFromSliders(sliders[0])}>
-                    {this.getPanelsFromSliderArray(sliders[0])}
-                </Collapse >
+                <Row>
+                    <Col span={26}>
+                        <Collapse defaultActiveKey={this.getDefaultActiveKeysFromSliders(sliders[0])}>
+                            {this.getPanelsFromSliderArray(sliders[0])}
+                        </Collapse >
+                    </Col>
+                </Row>
             );
         } else {
-            const { checkBoxes } = this.props;
-            const checkBoxesDisplay = (<Panel header="Color Preset Settings">{this.props.checkBoxes}</Panel>);
+            const { checkBoxesDisplay } = this.props;
             accordions = (
-                <Collapse defaultActiveKey={sliders[0][0].props.settingsType} accordion>
-                    {sliders.map((sliderSet) => {
-                        return (
-                            <Panel key={sliderSet[0].props.settingsType} header={sliderSet[0].props.settingsType}>
-                                <Collapse defaultActiveKey={this.getDefaultActiveKeysFromSliders(sliderSet)} >
-                                    {this.getPanelsFromSliderArray(sliderSet)}
-                                </Collapse>
-                            </Panel>
-                        );
-                    })}
-                    {(checkBoxes) ? checkBoxesDisplay : null}
-                </Collapse>
+                <Row>
+                    <Col span={26}>
+                        <Collapse defaultActiveKey={[]} accordion>
+                            {sliders.map((sliderSet) => {
+                            return (
+                                <Panel key={sliderSet[0].props.settingsType} header={sliderSet[0].props.settingsType}>
+                                    <Collapse defaultActiveKey={this.getDefaultActiveKeysFromSliders(sliderSet)} >
+                                        {this.getPanelsFromSliderArray(sliderSet)}
+                                    </Collapse>
+                                </Panel>
+                            );
+                        })}
+                        <Panel header={COLOR_PRESETS_SETTING_CHANGED} key={COLOR_PRESETS_SETTING_CHANGED}>
+                            {(checkBoxesDisplay) ? checkBoxesDisplay : null}
+                        </Panel>
+                        </Collapse>
+                    </Col>
+                </Row >
             );
         }
         return accordions;

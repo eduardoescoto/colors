@@ -1,12 +1,14 @@
 import ColorSliderAccordion from '../Components/ColorSliderAccordion';
-import ColorPresetsPicker from '../Components/ColorPresetsPicker';
+import changeSettingAction from '../Actions/colorSettingsChangeAction';
+import changeSelectedSetting from '../Actions/changeSelectedSettingAction';
+import ColorPresetsPickerAccordion from '../Components/ColorPresetsPickerAccordion';
 
 import React, { Component } from 'react';
 import ColorSlider, { LIMIT_TYPES } from '../Components/ColorSlider'
 
+import { Row, Col, Button } from 'antd';
 import { connect } from 'react-redux';
 import { changePageAction, PAGE_TYPES } from '../Actions/pageChangedAction';
-import { changeSettingAction } from '../Actions/colorSettingsChangeAction'
 import {
     HSL_SETTING_CHANGED,
     HEX_SETTING_CHANGED,
@@ -64,13 +66,13 @@ class SettingsPage extends Component {
         let optionDisplay;
         const { changeSetting } = this.props;
         const { colorPresetValues } = this.props.colorSettings;
+        const colorPresetDisplay = (<ColorPresetsPickerAccordion header={COLOR_PRESETS_SETTING_CHANGED} colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
 
         if (settingsType === PAGE_TYPES.COLOR_PRESET_SETTINGS) {
-            optionDisplay = (<ColorPresetsPicker colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
+            optionDisplay = colorPresetDisplay;
         } else if (settingsType === PAGE_TYPES.SETTINGS) {
             const sliders = this.getSlidersBySettingsType(settingsType);
-            const checkBoxes = (<ColorPresetsPicker colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
-            optionDisplay = (<ColorSliderAccordion sliders={sliders} checkBoxes={checkBoxes} />);
+            optionDisplay = (<ColorSliderAccordion sliders={sliders} checkBoxesDisplay={colorPresetDisplay} />);
         }
         else {
             const sliders = this.getSlidersBySettingsType(settingsType);
@@ -84,11 +86,23 @@ class SettingsPage extends Component {
         const optionDisplay = this.getOptionDisplayFromSettingsType(settingsType);
         return (
             <div>
-                <h2>
-                    {settingHeading}
-                </h2>
-                {optionDisplay}
-            </div>
+                <Row>
+                    <h2>
+                        {settingHeading}
+                    </h2>
+                </Row>
+                <Row>
+                    {optionDisplay}
+                </Row>
+                <Row>
+                    <Col push={19} span={12}>
+                        <Button.Group style={{ paddingTop: "10px" }}>
+                            <Button size="large" type="primary" ghost>Save</Button>
+                            <Button size="large" type="danger" ghost>Cancel</Button>
+                        </Button.Group>
+                    </Col>
+                </Row>
+            </div >
         );
     }
 }
@@ -100,6 +114,7 @@ function mapStateToProps({ colorSettings, pages }) {
 function mapDispatchToProps(dispatch) {
     return {
         changeCurrentPage: (page) => dispatch(changePageAction(page)),
+        changeSelectedSetting: (setting) => dispatch(changeSelectedSetting(setting)),
         changeSetting: (settingsType, value) => dispatch(changeSettingAction(settingsType, value))
     }
 }

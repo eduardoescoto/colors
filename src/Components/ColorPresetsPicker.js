@@ -5,8 +5,8 @@ import { COLOR_PRESETS_SETTING_CHANGED, COLOR_PRESETS } from '../Actions/colorSe
 class ColorPresetsPicker extends Component {
     getColorPresetCheckboxGroup = (presets) => {
         const presetKeys = Object.keys(presets);
-
-        const options = presetKeys.map((key) => {
+        const presetKeysSorted = presetKeys.sort();
+        const options = presetKeysSorted.map((key) => {
             const label = presets[key];
             const checkbox = (<Col key={key} span={8}><Checkbox value={key}>{label}</Checkbox></Col>);
             return checkbox;
@@ -14,15 +14,15 @@ class ColorPresetsPicker extends Component {
 
         const colorPresetCheckboxGroup = (
             <div>
+                <Button.Group style={{ paddingBottom: "10px" }}>
+                    <Button type="primary" ghost onClick={this.selectAllCheckBoxes}>Select All</Button>
+                    <Button type="danger" ghost onClick={this.deselectAllCheckBoxes}>Deselect All</Button>
+                </Button.Group>
                 <Checkbox.Group value={this.getIsCheckedArray(presets)} onChange={this.onCheckboxChange} style={{ width: "100%" }}>
                     <Row>
                         {options}
                     </Row>
                 </Checkbox.Group>
-                <Button.Group style={{ paddingTop: "10px" }}>
-                    <Button type="primary" ghost onClick={this.selectAllCheckBoxes}>Select All</Button>
-                    <Button type="danger" ghost onClick={this.deselectAllCheckBoxes}>Deselect All</Button>
-                </Button.Group>
             </div>
         );
         return colorPresetCheckboxGroup;

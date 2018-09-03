@@ -9,7 +9,8 @@ export const COLOR_PRESETS = {
     WHITES: 'Whites',
     PASTELS: 'Pastels',
     ORANGES: 'Oranges',
-    PURPLES: 'Purples'
+    PURPLES: 'Purples',
+    NEONS: 'Neons'
 }
 
 export const VALUE_TYPES = {
@@ -31,7 +32,7 @@ export const HEX_SETTING_CHANGED = "HEX Settings";
 
 
 
-export function changeSettingAction(settingChange, settingsValue) {
+export default function changeSettingAction(settingChange, settingsValue) {
     return {
         type: settingChange,
         payload: settingsValue
