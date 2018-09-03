@@ -25,8 +25,10 @@ class ColorSliderAccordion extends Component {
                 </Collapse >
             );
         } else {
+            const { checkBoxes } = this.props;
+            const checkBoxesDisplay = (<Panel header="Color Preset Settings">{this.props.checkBoxes}</Panel>);
             accordions = (
-                <Collapse defaultActiveKey={sliders[0][0].props.settingsType}>
+                <Collapse defaultActiveKey={sliders[0][0].props.settingsType} accordion>
                     {sliders.map((sliderSet) => {
                         return (
                             <Panel key={sliderSet[0].props.settingsType} header={sliderSet[0].props.settingsType}>
@@ -36,6 +38,7 @@ class ColorSliderAccordion extends Component {
                             </Panel>
                         );
                     })}
+                    {(checkBoxes) ? checkBoxesDisplay : null}
                 </Collapse>
             );
         }

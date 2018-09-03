@@ -10,7 +10,6 @@ import {
 
 let initialState = {
     settingsMode: SETTINGS_MODE.TYPES,
-    colorType: Object.values(COLOR_PRESETS),
     hslValues: {
         hueValues: {
             exact: 240,
@@ -61,7 +60,8 @@ let initialState = {
             ranged: [50, 175],
             valueType: VALUE_TYPES.RANGED
         }
-    }
+    },
+    colorPresetValues: Object.keys(COLOR_PRESETS)
 }
 
 function colorSettingsChangedReducer(state = initialState, { type, payload }) {
@@ -69,7 +69,7 @@ function colorSettingsChangedReducer(state = initialState, { type, payload }) {
         case HSL_SETTING_CHANGED: state = { ...state, hslValues: payload }; break;
         case HEX_SETTING_CHANGED: state = { ...state, hexValues: payload }; break;
         case RGB_SETTING_CHANGED: state = { ...state, rgbValues: payload }; break;
-        case COLOR_PRESETS_SETTING_CHANGED: state = { ...state, colorType: payload }; break;
+        case COLOR_PRESETS_SETTING_CHANGED: state = { ...state, colorPresetValues: payload }; break;
         default: state = { ...state }; break;
     }
     return state;

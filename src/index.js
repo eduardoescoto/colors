@@ -26,9 +26,10 @@ registerServiceWorker();
  * [x] Create Color Sliders and make them look nice
  * [x] Create Breadcrumbs that integrate with router
  * [x] Make footer fixed and text centered all the time
- * [] Create Settings Pages for each type
- * [] Fix settings titles to look nice
- * [] Fix all settings page to maybe use dropdowns
+ * [x] Create Settings Pages for each type
+ * [x] Fix settings titles to look nice
+ * [x] Fix all settings page to maybe use dropdowns
+ * [x] Change Radio group to check box group
  * [] Set the current settings type
  * [] Write the Colors page
  * [] Create Palette Creator
@@ -39,5 +40,4 @@ registerServiceWorker();
  * [] Copy a color hex or rgb value to clipboard
  * [] Fix sider animation
  * [] Get domain and market!
- * [] Change Radio group to check box group
  */

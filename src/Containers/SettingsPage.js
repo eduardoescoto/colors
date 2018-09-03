@@ -49,22 +49,30 @@ class SettingsPage extends Component {
             <ColorSlider step={0.01} limits={LIMIT_TYPES.SATURATION_LIMIT} settingPrefix={hslValues} settingName="saturationValues" settingValue={hslValues.saturationValues} settingsType={HSL_SETTING_CHANGED} changeSetting={changeSetting} sliderName="Saturation Value" />,
             <ColorSlider step={0.01} limits={LIMIT_TYPES.LIGHTNESS_LIMIT} settingPrefix={hslValues} settingName="lightnessValues" settingValue={hslValues.lightnessValues} settingsType={HSL_SETTING_CHANGED} changeSetting={changeSetting} sliderName="Lightness Value" />
         ];
-        let sliders;
 
+        let optionDisplay;
         switch (settingsType) {
-            case PAGE_TYPES.SETTINGS: sliders = [hslSliders, hexSliders, rgbSliders]; break;
-            case PAGE_TYPES.HEX_SETTINGS: sliders = [hexSliders]; break;
-            case PAGE_TYPES.RGB_SETTINGS: sliders = [rgbSliders]; break;
-            case PAGE_TYPES.HSL_SETTINGS: sliders = [hslSliders]; break;
-            default: sliders = [rgbSliders]; break;
+            case PAGE_TYPES.SETTINGS: optionDisplay = [hslSliders, hexSliders, rgbSliders]; break;
+            case PAGE_TYPES.HEX_SETTINGS: optionDisplay = [hexSliders]; break;
+            case PAGE_TYPES.RGB_SETTINGS: optionDisplay = [rgbSliders]; break;
+            case PAGE_TYPES.HSL_SETTINGS: optionDisplay = [hslSliders]; break;
+            default: optionDisplay = [rgbSliders]; break;
         }
-        return sliders;
+        return optionDisplay;
     }
     getOptionDisplayFromSettingsType = (settingsType) => {
         let optionDisplay;
+        const { changeSetting } = this.props;
+        const { colorPresetValues } = this.props.colorSettings;
+
         if (settingsType === PAGE_TYPES.COLOR_PRESET_SETTINGS) {
-            optionDisplay = (<ColorPresetsPicker />);
-        } else {
+            optionDisplay = (<ColorPresetsPicker colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
+        } else if (settingsType === PAGE_TYPES.SETTINGS) {
+            const sliders = this.getSlidersBySettingsType(settingsType);
+            const checkBoxes = (<ColorPresetsPicker colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
+            optionDisplay = (<ColorSliderAccordion sliders={sliders} checkBoxes={checkBoxes} />);
+        }
+        else {
             const sliders = this.getSlidersBySettingsType(settingsType);
             optionDisplay = (<ColorSliderAccordion sliders={sliders} />);
         }
