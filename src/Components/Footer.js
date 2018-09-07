@@ -18,7 +18,8 @@ class Footer extends Component {
             paddingTop: "12px",
             background: "#FFF",
             paddingRight: "0px",
-            paddingBottom: "12px"
+            paddingBottom: "12px",
+            borderTop: '1px solid rgb(217, 217, 217)'
         };
 
         return (

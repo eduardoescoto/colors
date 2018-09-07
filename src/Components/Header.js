@@ -13,7 +13,8 @@ class Header extends Component {
             padding: 0,
             width: '100%',
             position: 'fixed',
-            background: '#fff'
+            background: '#fff',
+            borderBottom: '1px solid rgb(217, 217, 217)'
         }
 
         return (
