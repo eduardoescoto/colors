@@ -1,6 +1,7 @@
 import ColorSliderAccordion from '../Components/ColorSliderAccordion';
 import changeSettingAction from '../Actions/colorSettingsChangeAction';
 import ColorPresetsPickerAccordion from '../Components/ColorPresetsPickerAccordion';
+import ColorPresetsPicker from '../Components/ColorPresetsPicker';
 
 import React, { Component } from 'react';
 import ColorSlider, { LIMIT_TYPES } from '../Components/ColorSlider'
@@ -36,10 +37,10 @@ class SettingsPage extends Component {
         const { changeSelectedSetting, selectedSetting: { selectedSetting, temporarySelectedSetting }, location: { pathname } } = this.props;
         const { settingsType } = this.getSettingsTypeFromPath(pathname);
 
-        if (selectedSetting === temporarySelectedSetting) {
-            changeSelectedSetting(settingsType);
-        } else if (selectedSetting !== temporarySelectedSetting && settingsType === PAGE_TYPES.SETTINGS) {
+        if (selectedSetting !== temporarySelectedSetting && settingsType === PAGE_TYPES.SETTINGS) {
             changeSelectedSetting(temporarySelectedSetting);
+        } else if (selectedSetting === temporarySelectedSetting && settingsType !== PAGE_TYPES.SETTINGS) {
+            changeSelectedSetting(settingsType);
         }
 
         this.returnToHomePage();
@@ -80,11 +81,12 @@ class SettingsPage extends Component {
     getOptionDisplayFromSettingsType = (settingsType) => {
         let optionDisplay;
         const { changeSetting, changeTemporarySelectedSetting, selectedSetting: { temporarySelectedSetting }, colorSettings: { colorPresetValues } } = this.props;
-        const colorPresetDisplay = (<ColorPresetsPickerAccordion header={COLOR_PRESETS_SETTING_CHANGED} colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
 
         if (settingsType === PAGE_TYPES.COLOR_PRESET_SETTINGS) {
+            const colorPresetDisplay = (<ColorPresetsPickerAccordion header={COLOR_PRESETS_SETTING_CHANGED} colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
             optionDisplay = colorPresetDisplay;
         } else if (settingsType === PAGE_TYPES.SETTINGS) {
+            const colorPresetDisplay = (<ColorPresetsPicker header={COLOR_PRESETS_SETTING_CHANGED} colorPresetState={colorPresetValues} changeSetting={changeSetting} />);
             const sliders = this.getSlidersBySettingsType(settingsType);
             optionDisplay = (<ColorSliderAccordion temporarySelectedSetting={temporarySelectedSetting} changeTemporarySelectedSetting={changeTemporarySelectedSetting} sliders={sliders} checkBoxesDisplay={colorPresetDisplay} />);
         }

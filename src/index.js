@@ -9,15 +9,15 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-const colors =
-    (<Provider store={store}>
+const colors = (
+    <Provider store={store}>
         <BrowserRouter>
             <Switch>
                 <App />
             </Switch>
-        </BrowserRouter >
-    </Provider >
-    );
+        </BrowserRouter>
+    </Provider>
+);
 
 ReactDOM.render(colors, document.getElementById('root'));
 registerServiceWorker();
@@ -33,9 +33,10 @@ registerServiceWorker();
  * [x] Fix all settings page to maybe use dropdowns
  * [x] Change Radio group to check box group
  * [x] add list of named colors
- * [] Move header breadcrumbs to their own component
+ * [x] Move header breadcrumbs to their own component
+ * [x] Set the current settings type
+ * [x] Fix sider animation
  * [] add color range boxes to the check box group within consideration for the color type
- * [] Set the current settings type
  * [] Write the Colors page
  * [] Create Palette Creator
  * [] Find a way to programmatically pick good companion colors
@@ -43,6 +44,5 @@ registerServiceWorker();
  * [] Incorporate accounts to keep palettes saved
  * [] Save palettes for offline use in different formats like txt, json
  * [] Copy a color hex or rgb value to clipboard
- * [] Fix sider animation
  * [] Get domain and market!
  */

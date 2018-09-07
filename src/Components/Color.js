@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { colorExistsInNamedColors, getColorName } from '../Utilities/colorMethods';
-class Color extends Component {
 
+import { colorExistsInNamedColors, getColorName } from '../Utilities/colorMethods';
+
+class Color extends Component {
     render() {
         const { id } = this.props;
         console.log(colorExistsInNamedColors(id), getColorName(id));
