@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { Checkbox, Row, Col, Button } from 'antd';
 import { COLOR_PRESETS_SETTING_CHANGED, COLOR_PRESETS } from '../Actions/colorSettingsChangeAction';
 

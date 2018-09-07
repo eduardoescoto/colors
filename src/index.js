@@ -36,6 +36,7 @@ registerServiceWorker();
  * [x] Move header breadcrumbs to their own component
  * [x] Set the current settings type
  * [x] Fix sider animation
+ * [] Refactor Sliders and Accordions. They are really ugly
  * [] add color range boxes to the check box group within consideration for the color type
  * [] Write the Colors page
  * [] Create Palette Creator

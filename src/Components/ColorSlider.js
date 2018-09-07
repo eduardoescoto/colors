@@ -1,5 +1,6 @@
-import { Slider, Radio } from 'antd';
 import React, { Component } from 'react';
+
+import { Slider, Radio } from 'antd';
 import { VALUE_TYPES } from '../Actions/colorSettingsChangeAction';
 
 export const LIMIT_TYPES = {
