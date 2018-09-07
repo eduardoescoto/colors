@@ -1,56 +1,51 @@
-import Colors from './Colors';
-import ColorPage from '../Components/ColorPage';
-import SettingsPage from './SettingsPage';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
+import AppRoutes from '../Components/AppRoutes';
 import ControlSider from '../Components/ControlSider';
-import HeaderBreadcrumb from '../Components/HeaderBreadcrumb';
-import changeSettingAction from '../Actions/colorSettingsChangeAction'
+import changeSettingAction from '../Actions/colorSettingsChangeAction';
 
 import { Layout } from 'antd';
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
 import { changePageAction, changeSiderCollapseAction } from '../Actions/pageChangedAction';
 
 class App extends Component {
     componentWillMount() {
-        const initialLocation = this.props.location.pathname;
-        this.props.changeCurrentPage(initialLocation);
+        const { changeCurrentPage, location: { pathname: initialLocation } } = this.props;
+        changeCurrentPage(initialLocation);
     }
     componentDidUpdate(prevProps) {
-        const prevPath = prevProps.location.pathname;
-        const currentPath = this.props.location.pathname;
+        const { pathname: prevPath } = prevProps.location;
+        const { changeCurrentPage, location: { pathname: currentPath } } = this.props;
+
         if (prevPath !== currentPath) {
-            this.props.changeCurrentPage(currentPath);
+            changeCurrentPage(currentPath);
         }
     }
+    getSiderCollapsedStyles = (siderCollapsed) => {
+        const siderCollapsedData = {
+            collapsed: siderCollapsed,
+            collapsedPadding: { collapsed: 80, expanded: 200 },
+            collapsedMinWidth: { collapsed: 500, expanded: 620 }
+        };
+        const styleData = {
+            minWidth: (siderCollapsedData.collapsed ? siderCollapsedData.collapsedMinWidth.collapsed : siderCollapsedData.collapsedMinWidth.expanded),
+            marginLeft: (siderCollapsedData.collapsed ? siderCollapsedData.collapsedPadding.collapsed : siderCollapsedData.collapsedPadding.expanded),
+        }
+        return styleData;
+    }
     render() {
-        const { Header, Content, Footer, } = Layout;
         const { changeSiderCollapsed, changeCurrentPage, pages: { siderCollapsed, currentPage } } = this.props;
-
-        const siderCollapsedPadding = { collapsed: 80, expanded: 200 };
-        const siderCollapsedMinWidth = { collapsed: 500, expanded: 620 };
+        const { minWidth, marginLeft } = this.getSiderCollapsedStyles(siderCollapsed);
 
         return (
-            <Layout style={{ minHeight: '100vh', minWidth: siderCollapsed ? siderCollapsedMinWidth.collapsed : siderCollapsedMinWidth.expanded }} >
+            <Layout style={{ minHeight: '100vh', minWidth }} >
                 <ControlSider changeCollapse={changeSiderCollapsed} siderCollapsed={siderCollapsed} changePage={changeCurrentPage} currentPage={currentPage} />
-                <Layout style={{ background: "rgb(240, 242, 245)", transition: "background 0.5s ease 0.2s, width 0.4s ease 0.2s", marginLeft: siderCollapsed ? siderCollapsedPadding.collapsed : siderCollapsedPadding.expanded }}>
-                    <Header style={{ minWidth: siderCollapsed ? siderCollapsedMinWidth.collapsed : siderCollapsedMinWidth.expanded, position: 'fixed', zIndex: 3, width: '100%', background: '#fff', padding: 0 }}>
-                        <HeaderBreadcrumb {...this.props} />
-                    </Header>
-                    <Content style={{ margin: '75px 50px 75px 50px', overflow: 'initial' }}>
-                        <Route path='/settings/rgbSettings' component={SettingsPage} />
-                        <Route path='/settings/hexSettings' component={SettingsPage} />
-                        <Route path='/settings/hslSettings' component={SettingsPage} />
-                        <Route path='/settings/colorPresetSettings' component={SettingsPage} />
-                        <Route path='/colors/:id' component={ColorPage} />
-                        <Route exact path='/settings' component={SettingsPage} />
-                        <Route exact path='/colors' component={Colors} />
-                        <Route exact path='/' component={Colors} />
-                    </Content>
-                    <Footer style={{ overflow: "auto", minWidth: siderCollapsed ? siderCollapsedMinWidth.collapsed : siderCollapsedMinWidth.expanded, width: "100%", zIndex: 3, position: "fixed", bottom: 0, right: 0, padding: `12px 60px`, paddingRight: "0px", paddingLeft: siderCollapsed ? siderCollapsedPadding.collapsed : siderCollapsedPadding.expanded, background: "#FFF" }}>
-                        <h3 style={{ textAlign: "center", padding: 0, margin: 0 }}>COLORS, MADE WITH <span role="img" aria-label="LOVE">💖</span> BY ED HEHE xD</h3>
-                    </Footer>
+                <Layout style={{ background: "rgb(240, 242, 245)", transition: "background 0.5s ease 0.2s, width 0.4s ease 0.2s", marginLeft }}>
+                    <Header minWidth {...this.props} />
+                    <AppRoutes />
+                    <Footer minWidth paddingLeft={marginLeft} {...this.props} />
                 </Layout>
             </Layout >
         );
