@@ -4,9 +4,9 @@ import AppRoutes from '../Components/AppRoutes';
 import ControlSider from '../Components/ControlSider';
 import changeSettingAction from '../Actions/colorSettingsChangeAction';
 
-import { Layout } from 'antd';
 import React, { Component } from 'react';
 
+import { Layout } from 'antd';
 import { connect } from 'react-redux';
 import { changePageAction, changeSiderCollapseAction } from '../Actions/pageChangedAction';
 
@@ -42,10 +42,10 @@ class App extends Component {
         return (
             <Layout style={{ minHeight: '100vh', minWidth }} >
                 <ControlSider changeCollapse={changeSiderCollapsed} siderCollapsed={siderCollapsed} changePage={changeCurrentPage} currentPage={currentPage} />
-                <Layout style={{ background: "rgb(240, 242, 245)", transition: "background 0.5s ease 0.2s, width 0.4s ease 0.2s", marginLeft }}>
+                <Layout style={{ backgroundColor: "rgb(240, 242, 245)", transition: "background 0.5s ease 0.2s, width 0.4s ease 0.2s", marginLeft }}>
                     <Header minWidth {...this.props} />
                     <AppRoutes />
-                    <Footer minWidth paddingLeft={marginLeft} {...this.props} />
+                    <Footer minWidth marginLeft {...this.props} />
                 </Layout>
             </Layout >
         );

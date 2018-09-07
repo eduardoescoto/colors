@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 class Footer extends Component {
     render() {
-        const { minWidth, paddingLeft } = this.props;
+        const { minWidth, marginLeft: paddingLeft } = this.props;
         const headerStyle = { textAlign: "center", padding: 0, margin: 0 };
         const footerStyle = {
             minWidth,

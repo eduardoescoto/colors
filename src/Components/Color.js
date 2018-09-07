@@ -5,7 +5,7 @@ import { colorExistsInNamedColors, getColorName } from '../Utilities/colorMethod
 class Color extends Component {
     render() {
         const { id } = this.props;
-        console.log(colorExistsInNamedColors(id), getColorName(id));
+        // console.log(colorExistsInNamedColors(id), getColorName(id));
         return (
             <div style={{ backgroundColor: id, width: "40px", height: "40px" }}>
 

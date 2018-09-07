@@ -9,7 +9,7 @@ import changeSelectedSettingAction, { changeTemporarySelectedSettingAction } fro
 
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'antd';
-import { changePageAction, PAGE_TYPES } from '../Actions/pageChangedAction';
+import { PAGE_TYPES } from '../Actions/pageChangedAction';
 import {
     HSL_SETTING_CHANGED,
     HEX_SETTING_CHANGED,
@@ -124,12 +124,11 @@ class SettingsPage extends Component {
 }
 function mapStateToProps({ colorSettings, pages, selectedSetting }) {
     return {
-        colorSettings, pages, selectedSetting
+        colorSettings, selectedSetting
     }
 }
 function mapDispatchToProps(dispatch) {
     return {
-        changeCurrentPage: (page) => dispatch(changePageAction(page)),
         changeSelectedSetting: (setting) => dispatch(changeSelectedSettingAction(setting)),
         changeSetting: (settingsType, value) => dispatch(changeSettingAction(settingsType, value)),
         changeTemporarySelectedSetting: (setting) => dispatch(changeTemporarySelectedSettingAction(setting))
