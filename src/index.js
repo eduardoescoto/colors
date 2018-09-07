@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
+
 const colors =
     (<Provider store={store}>
         <BrowserRouter>
@@ -15,7 +16,8 @@ const colors =
                 <App />
             </Switch>
         </BrowserRouter >
-    </Provider >);
+    </Provider >
+    );
 
 ReactDOM.render(colors, document.getElementById('root'));
 registerServiceWorker();
@@ -30,6 +32,8 @@ registerServiceWorker();
  * [x] Fix settings titles to look nice
  * [x] Fix all settings page to maybe use dropdowns
  * [x] Change Radio group to check box group
+ * [x] add list of named colors
+ * [] Move header breadcrumbs to their own component
  * [] add color range boxes to the check box group within consideration for the color type
  * [] Set the current settings type
  * [] Write the Colors page

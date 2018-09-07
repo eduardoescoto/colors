@@ -1,5 +1,5 @@
 import Colors from './Colors';
-import Color from '../Components/Color';
+import ColorPage from '../Components/ColorPage';
 import SettingsPage from './SettingsPage';
 import ControlSider from '../Components/ControlSider';
 import changeSettingAction from '../Actions/colorSettingsChangeAction'
@@ -69,7 +69,7 @@ class App extends Component {
                         <Route path='/settings/hexSettings' component={SettingsPage} />
                         <Route path='/settings/hslSettings' component={SettingsPage} />
                         <Route path='/settings/colorPresetSettings' component={SettingsPage} />
-                        <Route path='/colors/:id' component={Color} />
+                        <Route path='/colors/:id' component={ColorPage} />
                         <Route exact path='/settings' component={SettingsPage} />
                         <Route exact path='/colors' component={Colors} />
                         <Route exact path='/' component={Colors} />

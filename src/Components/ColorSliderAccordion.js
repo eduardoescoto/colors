@@ -1,6 +1,7 @@
 import { Collapse, Row, Col } from 'antd';
 import React, { Component } from 'react';
 import { COLOR_PRESETS_SETTING_CHANGED } from '../Actions/colorSettingsChangeAction';
+import { PAGE_TYPES } from '../Actions/pageChangedAction';
 
 const Panel = Collapse.Panel;
 
@@ -30,23 +31,23 @@ class ColorSliderAccordion extends Component {
                 </Row>
             );
         } else {
-            const { checkBoxesDisplay } = this.props;
+            const { checkBoxesDisplay, changeTemporarySelectedSetting, temporarySelectedSetting } = this.props;
             accordions = (
                 <Row>
                     <Col span={26}>
-                        <Collapse defaultActiveKey={[]} accordion>
+                        <Collapse activeKey={[temporarySelectedSetting]} onChange={changeTemporarySelectedSetting} accordion>
                             {sliders.map((sliderSet) => {
-                            return (
-                                <Panel key={sliderSet[0].props.settingsType} header={sliderSet[0].props.settingsType}>
-                                    <Collapse defaultActiveKey={this.getDefaultActiveKeysFromSliders(sliderSet)} >
-                                        {this.getPanelsFromSliderArray(sliderSet)}
-                                    </Collapse>
-                                </Panel>
-                            );
-                        })}
-                        <Panel header={COLOR_PRESETS_SETTING_CHANGED} key={COLOR_PRESETS_SETTING_CHANGED}>
-                            {(checkBoxesDisplay) ? checkBoxesDisplay : null}
-                        </Panel>
+                                return (
+                                    <Panel key={sliderSet[0].props.panelKey} header={sliderSet[0].props.settingsType}>
+                                        <Collapse defaultActiveKey={this.getDefaultActiveKeysFromSliders(sliderSet)} >
+                                            {this.getPanelsFromSliderArray(sliderSet)}
+                                        </Collapse>
+                                    </Panel>
+                                );
+                            })}
+                            <Panel header={COLOR_PRESETS_SETTING_CHANGED} key={PAGE_TYPES.COLOR_PRESET_SETTINGS}>
+                                {(checkBoxesDisplay) ? checkBoxesDisplay : null}
+                            </Panel>
                         </Collapse>
                     </Col>
                 </Row >

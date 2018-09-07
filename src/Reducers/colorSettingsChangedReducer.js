@@ -1,5 +1,4 @@
 import {
-    SETTINGS_MODE,
     COLOR_PRESETS,
     HSL_SETTING_CHANGED,
     RGB_SETTING_CHANGED,
@@ -9,7 +8,6 @@ import {
 } from '../Actions/colorSettingsChangeAction';
 
 let initialState = {
-    settingsMode: SETTINGS_MODE.TYPES,
     hslValues: {
         hueValues: {
             exact: 240,

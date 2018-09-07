@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-
+import { colorExistsInNamedColors, getColorName } from '../Utilities/colorMethods';
 class Color extends Component {
+
     render() {
-        const { id } = this.props.match.params;
-        console.log(id)
+        const { id } = this.props;
+        console.log(colorExistsInNamedColors(id), getColorName(id));
         return (
-            <div>
-                {id}
+            <div style={{ backgroundColor: id, width: "40px", height: "40px" }}>
+
             </div>
         );
     }

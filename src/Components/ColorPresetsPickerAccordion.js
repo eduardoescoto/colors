@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
 import ColorPresetsPicker from './ColorPresetsPicker';
+
+import React, { Component } from 'react';
+
 import { Collapse } from 'antd';
+
 class ColorPresetsPickerAccordion extends Component {
     render() {
         const { header, colorPresetState, changeSetting } = this.props;
