@@ -39,9 +39,10 @@ class HeaderBreadcrumb extends Component {
         return breadcrumbItems;
     }
     getHeaderBreadcrumbs = () => {
-        const pathSnippets = this.getPathSnippets();
-        const extraBreadcrumbItems = this.getExtraBreadCrumbItems(pathSnippets);
-        const breadcrumbItems = this.getAllBreadCrumbItems(extraBreadcrumbItems);
+        const { getPathSnippets, getExtraBreadCrumbItems, getAllBreadCrumbItems } = this;
+        const pathSnippets = getPathSnippets();
+        const extraBreadcrumbItems = getExtraBreadCrumbItems(pathSnippets);
+        const breadcrumbItems = getAllBreadCrumbItems(extraBreadcrumbItems);
         return breadcrumbItems;
     }
     render() {
