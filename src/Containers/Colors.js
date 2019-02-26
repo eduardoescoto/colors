@@ -5,7 +5,8 @@ class Colors extends Component {
     render() {
         return (
             <div>
-                THE COLORS COMPONENT IS A WORK IN PROGRESS BITCHES FUCK OFF
+            Still A work in progress!
+            {#THE COLORS COMPONENT IS A WORK IN PROGRESS BITCHES FUCK OFF}
                 <Color id="#ffefd5" />
             </div>
         );
